@@ -1,0 +1,11 @@
+@import url(./__heading/element__heading.css);
+@import url(./__icon/element__icon.css);
+@import url(./__image/element__image.css);
+@import url(./__info/element__info.css);
+
+.element {
+  max-width: 282px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
