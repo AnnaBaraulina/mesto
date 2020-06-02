@@ -1,8 +1,16 @@
 .popup__about {
   width: 83%;
-  margin: 0 auto 48px;
+  height: 28px;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 auto 30px;
+  border-bottom: 1px solid #C8C8C8;
   border-top: none;
   border-right: none;
   border-left: none;
   padding: 0px;
+}
+
+.popup__about:last-child {
+  margin-bottom: 48px;
 }

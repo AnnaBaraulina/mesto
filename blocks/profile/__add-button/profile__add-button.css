@@ -9,6 +9,9 @@
   height: 50px;
   font-size: 22px;
   margin-left: auto;
+  background-image: url(../../../images/plus.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 
 }
 
@@ -19,7 +22,8 @@
 @media screen and (max-width: 750px) {
   .profile__add-button {
     width: 15%;
-    margin: auto;
+    
+    margin: 0 auto 20px;
   }
 }
 

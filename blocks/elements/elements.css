@@ -24,6 +24,43 @@
   }
 }
 
+@media screen and (max-width: 1024px){
+  .elements {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 14px;
+  }
+}
+
+
+
+@media screen and (max-width: 800px) {
+
+  .elements {
+     padding-left: 100px;
+     padding-right: 100px;
+    
+
+
+  }
+}
+
+@media screen and (max-width: 650px) {
+  
+  .elements {
+    padding-left: 50px;
+    padding-right: 50px;
+
+
+
+}
+
+@media screen and (max-width: 550px) {
+  .elements {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
 
 
 @media screen and (max-width: 425px) {

@@ -1,3 +1,18 @@
 .element__icon {
   margin-right: 20px;
+  background-image: url(../../../images/vector.svg);
+  background-position: center;
+  background-color: #FFFFFF;
+  border: none;
+  outline: none;
+  width: 22px;
+  height: 19px;
+  padding: 0px;
+  background-size: ;
+
+}
+
+.element__icon:hover {
+  opacity: 0.6;
+
 }

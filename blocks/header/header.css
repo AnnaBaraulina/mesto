@@ -1,7 +1,7 @@
-@import url(./__line/header__line.css);
 @import url(./__logo/header__logo.css);
 
 .header {
+  
   max-width: 882px;
   
   padding-left: 199px;
@@ -10,6 +10,17 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
+  
+}
+
+.header::after {
+  display: block;
+  content: " ";
+  max-width: 100%;
+  background: #545454;
+  height: 1px;
+
+
 }
 
 @media screen and (min-width: 1280px) {
