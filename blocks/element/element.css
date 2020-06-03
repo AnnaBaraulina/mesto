@@ -4,7 +4,7 @@
 @import url(./__info/element__info.css);
 
 .element {
-  max-width: 282px;
+  /*max-width: 282px;*/
   border-radius: 10px;
   background-color: #FFFFFF;
   overflow: hidden;

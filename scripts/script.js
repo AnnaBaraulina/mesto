@@ -33,15 +33,6 @@ let formElement = document.querySelector(".popup__container");
 function formSubmitHandler (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   
- 
-  
- 
- 
-
-  // Выберите элементы, куда должны быть вставлены значения полей
-  let infoName = document.querySelector(".profile__name");
-  let infoAbout = document.querySelector(".profile__about");
-
   infoName.textContent = containerName.value;
   infoAbout.textContent = containerAbout.value;
   popupClose();

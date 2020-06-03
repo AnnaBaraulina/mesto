@@ -8,7 +8,8 @@
   width: 22px;
   height: 19px;
   padding: 0px;
-  background-size: ;
+  background-size: contain;
+  background-repeat: no-repeat;
 
 }
 

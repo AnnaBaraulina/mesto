@@ -1,11 +1,14 @@
 @import url(./__logo/header__logo.css);
 
 .header {
+
+  /* попробуем выставить ширину в процентах */
+  max-width: 73%;
   
-  max-width: 882px;
+ /* max-width: 882px; 
   
   padding-left: 199px;
-  padding-right: 199px;
+  padding-right: 199px; */
   padding-top: 45px;
   margin-left: auto;
   margin-right: auto;
@@ -25,23 +28,26 @@
 
 @media screen and (min-width: 1280px) {
   .header {
-    max-width: 882px;
+    /*max-width: 882px;*/
+    max-width: 73%;
     }
 }
 
 @media screen and (max-width: 1280px) {
   .header {
-    max-width: 882px;
+   /* max-width: 882px;*/
+   max-width: 73%;
     }
 }
 
 @media screen and (max-width: 425px) {
   .header {
-    max-width: 320px;
+   /* max-width: 320px;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 0px;*/
     padding-top: 28px;
     margin-bottom: 42px;
+    max-width: 100%;
   }
 }
  
