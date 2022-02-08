@@ -101,11 +101,11 @@ enableValidation({
         this._hideError(input);
       }
     };
-    disabledButton = (submitButton) => {
-      if (this._submitButton.submit) {
-        this._submitButton.classList.add(this._inactiveButtonClass);
+    disabledButton = () => {
+      
+        this._submitButton.classList.add('popup__button_disabled');
         this._submitButton.disabled = true;
-      }
+      
     };
  
     _showError = (input, errorMessageText) => {
@@ -135,8 +135,6 @@ enableValidation({
       }
     };
   
-
-
     enableValidation = () => {
       this._setInputListeners();
     };

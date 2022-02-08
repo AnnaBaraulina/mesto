@@ -142,8 +142,6 @@ function handleClickCard(link, name) {
 }
 
 
-
-
 function renderCard(item) {
   const cardContainer = new Card('.template', item.name, item.link, handleClickCard);
   return cardContainer.generateCard();
@@ -176,7 +174,7 @@ function addElement(evt) {
   elementsContainer.prepend(renderCard(card));
   evt.target.reset();
   closePopup(popupAdd);
-  disabledButton(buttonSubmitAdd);
+  formAddValidator.disabledButton();
 }
 
 
@@ -200,7 +198,6 @@ function closePopupOverlay (evt) {
 };
 
 
-
 const enableValidation = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -209,10 +206,10 @@ const enableValidation = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 };
+
 const formEditValidator = new FormValidator(enableValidation, popupEdit);
 const formAddValidator = new FormValidator(enableValidation, popupAdd);
 formEditValidator.enableValidation();
 formEditValidator.resetValidation();
 formAddValidator.enableValidation();
-
 
