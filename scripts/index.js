@@ -1,5 +1,5 @@
-import Card from './card.js';
-import FormValidator from './formValidator.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 const popupEdit = document.querySelector(".popup_edit"); //попап редактирования профиля
 const popupEditOpen = document.querySelector(".profile__edit-button"); // кнопка открытия попапа редактирования профиля
