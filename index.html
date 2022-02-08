@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto Project</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+
+<body class="page">
+  <div class="page__container">
+    <header class="header page__header">
+      <img class="header__logo" src="images/vectorlogo.svg" alt="Логотип Место">
+    </header>
+    <main class="content page__content">
+      <section class="profile">
+        <img class="profile__picture" alt="Жак-Ив Кусто" src="images/avatarimage.jpg">
+        <div class="profile__info">
+          <div class="profile__container">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button"></button>
+          </div>
+          <p class="profile__about">Исследователь океана</p>
+        </div>
+        <button type="button" class="profile__add-button"></button>
+
+      </section>
+      <section class="elements content__elements">
+       
+      </section>
+
+    </main>
+    <footer class="footer">
+      <p class="footer__info">&copy; 2020 Mesto Russia</p>
+    </footer>
+
+  </div>
+  <section class="popup popup_edit">
+    <div class="popup__container popup__container_form">
+      <button type="button" class="popup__close-icon" id="close-edit"></button>
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <form class="popup__form" name="edit" id="edit">
+        <input type="text" name="name" placeholder="имя" class="popup__input" id="name" minlength="2" maxlength="40" required>
+        <span class="popup__input-error name-error" id="name-error"></span>
+        <input type="text" name="about" placeholder="о себе" class="popup__input" id="career" minlength="2" maxlength="200" required>
+        <span class="popup__input-error career-error" id="career-error"></span>
+        <button type="submit" class="popup__button" id="submit-edit">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_new">
+    <div class="popup__container popup__container_form">
+      <button type="button" class="popup__close-icon" id="close-add"></button>
+      <h2 class="popup__heading">Новое место</h2>
+      <form class="popup__form" name="new" id="new">
+        <input type="text" name="title" placeholder="Название" class="popup__input" id="title" minlength="2" maxlength="30" required>
+        <span class="popup__input-error title-error" id="title-error"></span>
+
+        <input type="url" name="link" placeholder="Ссылка на картинку" class="popup__input" id="popup-link" required>
+        <span class="popup__input-error popup-link-error" id="popup-link-error"></span>
+
+        <button type="submit" class="popup__button" id="submit-add">Создать</button>
+      </form>
+    </div>
+  </section>
+  <section class="popup popup_image">
+    <div class="popup__container">
+      <button id="close-photo" type="button" class="popup__close-icon"></button>
+      <img src="." alt="" class="popup__image-url">
+      <h2 class="popup__image-name"></h2>
+    </div>
+  </section>
+  <template class='template'>
+    <li class="element">
+      <button class="element__remove"></button>
+      <img class="element__image" alt="" src=".">
+      <div class="element__info">
+        <h2 class="element__heading"></h2>
+        <button type="button" class="element__icon"></button>
+      </div>
+    </li>
+  </template>
+  <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/formValidator.js"></script>
+  <script type="module" src="./scripts/card.js"></script>
+</body>
+
+</html>
