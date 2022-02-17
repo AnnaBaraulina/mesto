@@ -6,17 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto Project</title>
-  <link rel="stylesheet" href="./pages/index.css">
+  <!--<link rel="stylesheet" href="./pages/index.css">-->
 </head>
 
 <body class="page">
   <div class="page__container">
     <header class="header page__header">
-      <img class="header__logo" src="images/vectorlogo.svg" alt="Логотип Место">
+      <img class="header__logo" src="<%=require(./images/vectorlogo.svg)%>" alt="Логотип Место">
     </header>
     <main class="content page__content">
       <section class="profile">
-        <img class="profile__picture" alt="Жак-Ив Кусто" src="images/avatarimage.jpg">
+        <img class="profile__picture" alt="Жак-Ив Кусто" src="<%=require(./images/avatarimage.jpg)%>">
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
