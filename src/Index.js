@@ -66,16 +66,16 @@ const initialCards = [
 
 //новый код по ооп
 
-const popupWithImage = new PopupWithImage(popupPhoto); //yes
+const popupWithImage = new PopupWithImage(popupPhoto); 
 
 
-const popupWithFormElement = new PopupWithForm(document.querySelector(".popup_edit"), handleProfileSubmitForm); //y
+const popupEditProfile = new PopupWithForm(document.querySelector(".popup_edit"), handleProfileSubmitForm); 
 
-const popupWithFormElementNew = new PopupWithForm(document.querySelector('.popup_new'),handleAddCard); //y popupWithFormPlace
+const popupAddCard = new PopupWithForm(document.querySelector('.popup_new'),handleAddCard); 
 
-const userInfo = new UserInfo({nameProfileSelector:'.profile__name',infoProfileSelector:'.profile__about'}); //y
+const userInfo = new UserInfo({nameProfileSelector:'.profile__name',infoProfileSelector:'.profile__about'}); 
 
-const handleClickCard = (link, name) => {popupWithImage.open(link,name)}; //y
+const handleClickCard = (link, name) => {popupWithImage.open(link,name)};
 
 const renderCard = new Section ({
   items: initialCards,
@@ -83,48 +83,48 @@ const renderCard = new Section ({
     const handleClickCard = (link, name) => {popupWithImage.open(link,name)}
     return addCard(item,handleClickCard)
   }
-},elementsContainer); //y
+},elementsContainer);
 
-renderCard.render(); //y
+renderCard.render();
 
 
-popupWithFormElement.setEventListeners();//y
-popupWithImage.setEventListeners();//y
-popupWithFormElementNew.setEventListeners(); //y
+popupEditProfile.setEventListeners();
+popupWithImage.setEventListeners();
+popupAddCard.setEventListeners();
 
 
 function addCard (item,callback) {
   const card = new Card('.template', item.name, item.link, callback);
   const cardElement = card.generateCard();
   return cardElement
-} //y
+} 
 
 function handleAddCard (item) {
   const card = addCard(item, handleClickCard)
   renderCard.addItem(card);
-} //y
+} 
 
 
 
 function handleProfileSubmitForm(item) {
   userInfo.setUserInfo(item.profileName,item.profileInfo)
-} //y
+} 
 
-const formEditValidator = new FormValidator(enableValidation, popupEdit); //y
-const formAddValidator = new FormValidator(enableValidation, popupAdd); //y
-formEditValidator.enableValidation(); //y
-formAddValidator.resetValidation(); //y
-formAddValidator.enableValidation(); //y
+const formEditValidator = new FormValidator(enableValidation, popupEdit); 
+const formAddValidator = new FormValidator(enableValidation, popupAdd); 
+formEditValidator.enableValidation(); 
+formAddValidator.resetValidation();
+formAddValidator.enableValidation();
 
 popupAddOpen.addEventListener('click', function(){
-  popupWithFormElementNew.open();
+  popupAddCard.open();
   formAddValidator.resetValidation();
-}); //y newPlaceButton 
+}); 
 
 popupEditOpen.addEventListener('click', function(){
-  popupWithFormElement.open();
+  popupEditProfile.open();
   const userInfoForm = userInfo.getUserInfo();
   containerName.value = userInfoForm.profileName;
   containerAbout.value = userInfoForm.profileInfo;
   formEditValidator.resetValidation();
-}); //y
+}); 
