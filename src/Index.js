@@ -1,6 +1,10 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 import './pages/index.css';
+import UserInfo from './Userinfo.js';
 
 
 
@@ -23,7 +27,7 @@ const popupPhotoClose = popupPhoto.querySelector('#close-photo');
 const popupList = document.querySelectorAll('.popup');
 
 const popupActiv = document.querySelector('popup_opened');
-const listContainer = document.querySelector('.elements');
+
 
 /*function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -98,30 +102,81 @@ const template = document.querySelector('.template');
 
 //новый код по ооп
 
+const popupWithImage = new PopupWithImage(popupPhoto)
+popupWithImage.setEventListeners()
+
+
 /*function handleClickCard(link, name) {
   imgLink.src = link;
   imgLink.alt = link;
   popupName.textContent = name;
   openPopup(popupPhoto);
-}
+}*/
+
+const handleClickCard = (link, name) => {popupWithImage.open(link,name)}
+const renderCard = new Section ({
+  items: initialCards,
+  renderer: (item) => {
+    const handleClickCard = (link, name) => {popupWithImage.open(link,name)}
+    return addElement(item,handleClickCard)
+  }
+},elementsContainer);
+renderCard.render()
+
+const popupWithFormElement = new PopupWithForm(popupAdd,handleAddCard);
+
+popupAddOpen.addEventListener('click', function(){
+  popupWithFormElement.open();
+  formAddValidator.resetValidation();
+});
+
+popupWithFormElement.setEventListeners();
 
 
-function renderCard(item) {
+
+/*function renderCard(item) {
   const cardContainer = new Card('.template', item.name, item.link, handleClickCard);
   return cardContainer.generateCard();
+}*/
+
+/*initialCards.forEach((item) => {
+  listContainer.append(renderCard(item));
+});*/
+
+function addCard (item,callback) {
+  const card = new Card('.template', item.name, item.link, callback);
+  const cardElement = card.generateCard();
+  return cardElement
 }
 
-initialCards.forEach((item) => {
-  listContainer.append(renderCard(item));
+function handleAddCard (item) {
+  const card = addCard (item,handleClickCard)
+  renderCard.addItem(card);
+}
+
+const popupWithFormEdit = new PopupWithForm(popupEdit, handleProfileSubmitForm);
+popupEditOpen.addEventListener('click', function(){
+  popupWithFormEdit.open();
+  const userInfoForm = userInfo.gerUserInfo();
+  containerName.value = userInfoForm.nameProfile;
+  containerAbout.value = userInfoForm.infoProfile;
+  popupWithFormEdit.resetValidation();
 });
+popupWithFormEdit.setEventListeners();
+const userInfo = new UserInfo({nameProfileSelector:'.profile__name',infoProfileSelector:'.profile__about'})
+
+function handleProfileSubmitForm(item) {
+  userInfo.setUserInfo (item.nameProfile,item.infoProfile)
+}
+
 
 const popupAdd = document.querySelector('.popup_new');
 const popupAddOpen = document.querySelector('.profile__add-button');
 const popupAddClose = document.querySelector('#close-add');
 
 
-popupAddOpen.addEventListener('click', () => openPopup(popupAdd), buttonSubmitAdd.classList.add('popup__button_disabled'), buttonSubmitAdd.disabled = true);
-popupAddClose.addEventListener('click', () => closePopup(popupAdd));
+/*popupAddOpen.addEventListener('click', () => openPopup(popupAdd), buttonSubmitAdd.classList.add('popup__button_disabled'), buttonSubmitAdd.disabled = true);
+popupAddClose.addEventListener('click', () => closePopup(popupAdd));*/
 
 const popupTitle = document.getElementById('title');
 const popupLink = document.getElementById('popup-link');
@@ -129,7 +184,7 @@ const formAdd = document.getElementById('new');
 
 
 
-function addElement(evt) {
+/*function addElement(evt) {
   evt.preventDefault();
   const profileInput = popupTitle.value;
   const profileLink = popupLink.value;
@@ -144,7 +199,7 @@ function addElement(evt) {
 
 formAdd.addEventListener('submit', addElement);
 
-popupPhotoClose.addEventListener('click', () => closePopup(popupPhoto));
+popupPhotoClose.addEventListener('click', () => closePopup(popupPhoto));*/
 
 //закрытие попапа esk и overlay
 /*function closePopupEscape (evt) {
@@ -171,9 +226,9 @@ const enableValidation = {
   errorClass: 'popup__error_visible'
 };
 
-/*const formEditValidator = new FormValidator(enableValidation, popupEdit);
+const formEditValidator = new FormValidator(enableValidation, popupEdit);
 const formAddValidator = new FormValidator(enableValidation, popupAdd);
 formEditValidator.enableValidation();
 formEditValidator.resetValidation();
-formAddValidator.enableValidation();*/
+formAddValidator.enableValidation();
 
