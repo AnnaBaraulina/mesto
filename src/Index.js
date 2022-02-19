@@ -95,7 +95,7 @@ popupAddCard.setEventListeners();
 
 
 function addCard (item,callback) {
-  const card = new Card('.template', item.name, item.link, callback);
+  const card = new Card('.template', item.name || item.title, item.link || item['popup-link'], callback);
   const cardElement = card.generateCard();
   return cardElement
 } 
@@ -109,7 +109,6 @@ function handleAddCard (item) {
 
 
 function handleProfileSubmitForm(item) {
-  console.log('item', item);
   userInfo.setUserInfo(item.name, item.career)
 } 
 
