@@ -19,6 +19,8 @@ export default class Card {
        this._element.querySelector('.element__image').src = this._link;
        this._element.querySelector('.element__heading').textContent = this._name;
        this._setEventListeners()
+       console.log('generateCard', this._element)
+       console.log('_link', this._link)
        return this._element;
 
     }

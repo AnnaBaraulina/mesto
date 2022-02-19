@@ -77,7 +77,8 @@ const userInfo = new UserInfo({nameProfileSelector:'.profile__name',infoProfileS
 
 const handleClickCard = (link, name) => {popupWithImage.open(link,name)};
 
-const renderCard = new Section ({
+const 
+renderCard = new Section ({
   items: initialCards,
   renderer: (item) => {
     const handleClickCard = (link, name) => {popupWithImage.open(link,name)}
@@ -101,13 +102,15 @@ function addCard (item,callback) {
 
 function handleAddCard (item) {
   const card = addCard(item, handleClickCard)
+  console.log(card);
   renderCard.addItem(card);
 } 
 
 
 
 function handleProfileSubmitForm(item) {
-  userInfo.setUserInfo(item.profileName,item.profileInfo)
+  console.log('item', item);
+  userInfo.setUserInfo(item.name, item.career)
 } 
 
 const formEditValidator = new FormValidator(enableValidation, popupEdit); 
