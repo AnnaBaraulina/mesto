@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto Project</title>
-  <!--<link rel="stylesheet" href="./pages/index.css">-->
 </head>
 
 <body class="page">
@@ -25,17 +24,13 @@
           <p class="profile__about">Исследователь океана</p>
         </div>
         <button type="button" class="profile__add-button"></button>
-
       </section>
       <section class="elements content__elements">
-       
       </section>
-
     </main>
     <footer class="footer">
       <p class="footer__info">&copy; 2020 Mesto Russia</p>
     </footer>
-
   </div>
   <section class="popup popup_edit">
     <div class="popup__overlay"></div>
@@ -43,9 +38,11 @@
       <button type="button" class="popup__close-icon" id="close-edit"></button>
       <h2 class="popup__heading">Редактировать профиль</h2>
       <form class="popup__form" name="edit" id="edit">
-        <input type="text" name="name" placeholder="имя" class="popup__input" id="name" minlength="2" maxlength="40" required>
+        <input type="text" name="name" placeholder="имя" class="popup__input" id="name" minlength="2" maxlength="40"
+          required>
         <span class="popup__input-error name-error" id="name-error"></span>
-        <input type="text" name="about" placeholder="о себе" class="popup__input" id="career" minlength="2" maxlength="200" required>
+        <input type="text" name="about" placeholder="о себе" class="popup__input" id="career" minlength="2"
+          maxlength="200" required>
         <span class="popup__input-error career-error" id="career-error"></span>
         <button type="submit" class="popup__button" id="submit-edit">Сохранить</button>
       </form>
@@ -57,12 +54,11 @@
       <button type="button" class="popup__close-icon" id="close-add"></button>
       <h2 class="popup__heading">Новое место</h2>
       <form class="popup__form" name="new" id="new">
-        <input type="text" name="title" placeholder="Название" class="popup__input" id="title" minlength="2" maxlength="30" required>
+        <input type="text" name="title" placeholder="Название" class="popup__input" id="title" minlength="2"
+          maxlength="30" required>
         <span class="popup__input-error title-error" id="title-error"></span>
-
         <input type="url" name="link" placeholder="Ссылка на картинку" class="popup__input" id="popup-link" required>
         <span class="popup__input-error popup-link-error" id="popup-link-error"></span>
-
         <button type="submit" class="popup__button" id="submit-add">Создать</button>
       </form>
     </div>
@@ -71,23 +67,20 @@
     <div class="popup__overlay"></div>
     <div class="popup__container">
       <button id="close-photo" type="button" class="popup__close-icon"></button>
-      <img alt="" class="popup__image-url">
+      <img alt="Фотография города увеличенная" class="popup__image-url">
       <h2 class="popup__image-name"></h2>
     </div>
   </section>
   <template class='template'>
     <li class="element">
       <button class="element__remove"></button>
-      <img class="element__image" alt="" src=".">
+      <img class="element__image" alt="Фотография города" src=".">
       <div class="element__info">
         <h2 class="element__heading"></h2>
         <button type="button" class="element__icon"></button>
       </div>
     </li>
   </template>
-  <!-- <script type="module" src="./src/Index.js"></script>
-  <script type="module" src="./src/FormValidator.js"></script>
-  <script type="module" src="./src/Card.js"></script> -->
 </body>
 
 </html>
