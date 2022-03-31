@@ -6,6 +6,15 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import './index.css';
 import UserInfo from '../components/Userinfo.js';
+import { api } from '../components/Api.js';
+
+api.getProfile()
+ .then(res => {
+
+   userInfo.setUserInfo(res.name, res.about)
+ })
+
+
 
 const popupWithImage = new PopupWithImage(popupPhoto); 
 const popupEditProfile = new PopupWithForm(document.querySelector(".popup_edit"), handleProfileSubmitForm); 
@@ -16,7 +25,7 @@ const handleClickCard = (link, name) => {popupWithImage.open(link,name)};
 
 const 
 renderCard = new Section ({
-  items: initialCards,
+  items: [],
   renderer: (item) => {
     const handleClickCard = (link, name) => {popupWithImage.open(link,name)}
     return addCard(item,handleClickCard)
