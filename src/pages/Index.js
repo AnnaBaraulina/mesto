@@ -8,23 +8,45 @@ import './index.css';
 import UserInfo from '../components/Userinfo.js';
 import { api } from '../components/Api.js';
 
-api.getProfile()
- .then(res => {
+const getProfileInfo = api.getProfile()
+  .then((getProfileInfo) => {
+    return getProfileInfo
+  })
+  .catch((err) => {
+    console.log(`Ошибка при получении данных ${err}`)
+  })
 
-   userInfo.setUserInfo(res.name, res.about)
- })
+  const getInitialCards = api.getCards()
+    .then((getInitialCards) => {
+      return getInitialCards
+    })
+     .catch((err) => {
+       console.log(`Ошибка загрузки карточек ${err}`)
+     })
 
+     Promise.all([getProfileInfo, getInitialCards])
+      .then(([getProfileInfo, getInitialCards]) => {
+        userInfo.setUserInfo(getProfileInfo.name, getProfileInfo.about)
+
+        renderCards.renderItems(getInitialCards.reverse())
+      })
+      .catch((err) => {
+        console.log(`Ошибка при получении данных ${err}`)
+      })
 
 
 const popupWithImage = new PopupWithImage(popupPhoto); 
 const popupEditProfile = new PopupWithForm(document.querySelector(".popup_edit"), handleProfileSubmitForm); 
 const popupAddCard = new PopupWithForm(document.querySelector('.popup_new'),handleAddCard); 
-const userInfo = new UserInfo({nameProfileSelector:'.profile__name',infoProfileSelector:'.profile__about'}); 
+/*const userInfo = new UserInfo({nameProfileSelector:'.profile__name',infoProfileSelector:'.profile__about'}); */
+const userInfo = new UserInfo({
+  nameProfileSelector,
+  infoProfileSelector
+})
 
 const handleClickCard = (link, name) => {popupWithImage.open(link,name)};
 
-const 
-renderCard = new Section ({
+const renderCard = new Section ({
   items: [],
   renderer: (item) => {
     const handleClickCard = (link, name) => {popupWithImage.open(link,name)}
@@ -52,9 +74,13 @@ function handleAddCard (item) {
   renderCard.addItem(card);
 } 
 
-function handleProfileSubmitForm(item) {
-  userInfo.setUserInfo(item.name, item.career)
-} 
+function handleProfileSubmitForm(data)  {
+  const { name, career} = data
+  api.editProfile(name, career)
+   .then(res => {
+    userInfo.setUserInfo(item.name, item.career)
+   })
+ }; 
 
 const formEditValidator = new FormValidator(enableValidation, popupEdit); 
 const formAddValidator = new FormValidator(enableValidation, popupAdd); 
@@ -74,3 +100,11 @@ popupEditOpen.addEventListener('click', function(){
   containerAbout.value = userInfoForm.profileInfo;
   formEditValidator.resetValidation();
 }); 
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-38',
+  headers: {
+    authorization: 'e7f5540f-eb40-43c4-bbec-4f2f48de848c',
+    'Content-Type': 'application/json'
+  }
+});
