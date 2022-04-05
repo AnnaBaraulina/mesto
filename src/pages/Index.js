@@ -6,7 +6,15 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import './index.css';
 import UserInfo from '../components/Userinfo.js';
-import { api } from '../components/Api.js';
+import Api from '../components/Api.js';
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-38',
+  headers: {
+    authorization: 'e7f5540f-eb40-43c4-bbec-4f2f48de848c',
+    'Content-Type': 'application/json'
+  }
+});
 
 const getProfileInfo = api.getProfile()
   .then((getProfileInfo) => {
@@ -38,11 +46,8 @@ const getProfileInfo = api.getProfile()
 const popupWithImage = new PopupWithImage(popupPhoto); 
 const popupEditProfile = new PopupWithForm(document.querySelector(".popup_edit"), handleProfileSubmitForm); 
 const popupAddCard = new PopupWithForm(document.querySelector('.popup_new'),handleAddCard); 
-/*const userInfo = new UserInfo({nameProfileSelector:'.profile__name',infoProfileSelector:'.profile__about'}); */
-const userInfo = new UserInfo({
-  nameProfileSelector,
-  infoProfileSelector
-})
+const userInfo = new UserInfo({nameProfileSelector:'.profile__name',infoProfileSelector:'.profile__about'}); 
+
 
 const handleClickCard = (link, name) => {popupWithImage.open(link,name)};
 
@@ -101,10 +106,3 @@ popupEditOpen.addEventListener('click', function(){
   formEditValidator.resetValidation();
 }); 
 
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-38',
-  headers: {
-    authorization: 'e7f5540f-eb40-43c4-bbec-4f2f48de848c',
-    'Content-Type': 'application/json'
-  }
-});
