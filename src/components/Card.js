@@ -29,9 +29,9 @@ export default class Card {
         this._element.querySelector('.element__heading').textContent = this._name;
         this._likeCalc = this._element.querySelector('.element__likes');
         this._likeCalc.textContent = this._likes.length;
-        /*if (this._ownerId !== this._userId) {
+        if (this._ownerId !== this._userId) {
             this._deleteButton.classList.add('element__remove_disabled')
-        }*/
+        }
         if (this._isLiked) {
             this._like.classList.add('element__icon_active');
         }

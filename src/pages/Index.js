@@ -29,7 +29,7 @@ const getProfileInfo = api.getProfile()
 
 const popupWithImage = new PopupWithImage(popupPhoto);
 
-// редактирование профиля
+
 const userInfo = new UserInfo({ nameProfileSelector: '.profile__name', infoProfileSelector: '.profile__about' });
 const popupEditProfile = new PopupWithForm(document.querySelector(".popup_edit"), handleProfileSubmitForm);
 
@@ -38,6 +38,7 @@ function handleProfileSubmitForm(data) {
   editButton.textContent = 'Сохранение...'
   api.editProfileInfo(data)
     .then((res) => {
+      userInfo.setUserId(res._id)
       userInfo.setUserInfo(res.name, res.about)
     })
     .catch((err) => {
@@ -65,7 +66,7 @@ const handleClickCard = (data) => {
 };
 
 function addCard(data) {
-  const card = new Card('.template',  data, handleClickCard, userInfo.getUserId, deleteCard, likeCard);
+  const card = new Card('.template',  data, handleClickCard, userInfo.getUserId(), deleteCard, likeCard);
   const cardElement = card.generateCard();
   return cardElement
 }
@@ -112,15 +113,14 @@ const getInitialCards = api.getCards()
 Promise.all([getProfileInfo, getInitialCards])
   .then(([profileInfo, initialCards]) => {
     userInfo.setUserInfo(profileInfo.name, profileInfo.about)
+    userInfo.setUserId(profileInfo._id);
     renderCard.render(initialCards);
   })
   .catch((err) => {
     console.log(`Ошибка при получении данных ${err}`)
   })
 
-  // попап удаления карточки
-  /*const popupConfirmation = new PopupWithConfirmation('popup-delete', submitRemoveForm);
-  popupConfirmation.setEventListeners();*/
+ 
 
   function likeCard(card) {
     if(!card.getIsLiked()) {
@@ -142,15 +142,38 @@ Promise.all([getProfileInfo, getInitialCards])
     }
   }
   
-function deleteCard(card) {
-  api.removeCard(card._cardId)
+
+const popupRemove = new PopupWithConfirmation('popup-delete', deleteCard); // popupDelete
+popupRemove.setEventListeners();  
+
+function removeCard(card) {
+  popupRemove.open(card); 
+}
+
+function deleteCard(card) {//submitRemoveForm
+  popupCardDelete.textContent = 'Удаление...'
+  api.removeCard(card.getIdCard())
+   .then(() => {
+     card.deleteCard();
+     popupRemove.close();
+   })
+   .catch((err) => {
+    console.log(`Ошибка при удалении карточки ${err}`);
+   })
+   .finally(() => {
+     popupCardDelete.textContent = 'Да'
+   })
+  /*popupRemove.setSubmitAction(() => {
+    api.removeCard(card._cardId)
     .then(() => {
       card.deleteCard();
     })
     .catch((err) => {
       console.log(`Ошибка при удалении карточки ${err}`);
     })
-}
+  })*/
+ 
+};
 
 
 
