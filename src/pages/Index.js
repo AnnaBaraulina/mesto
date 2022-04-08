@@ -63,8 +63,11 @@ const handleClickCard = (data) => {
   popupWithImage.open(data)
 };
 
+const deleteCard = (card) => {
+}
+
 function addCard(data) {
-  const card = new Card('.template', { data }, handleClickCard, userInfo.getUserId, /*deleteCard, likeCard*/);
+  const card = new Card('.template', data, handleClickCard, userInfo.getUserId, deleteCard, likeCard);
   const cardElement = card.generateCard();
   return cardElement
 }
@@ -118,6 +121,25 @@ Promise.all([getProfileInfo, getInitialCards])
   })
 
 
+function likeCard(card) {
+    if (!card.getIsLiked()) {
+        api.putLikeCard(card._cardId)
+            .then((res) => {
+                card.likeCard(res);
+            })
+            .catch((err) => {
+                console.log(`Ошибка при лайке карточки ${err}`);
+            });
+    } else {
+        api.removeLike(card._cardId)
+            .then((res) => {
+                card.likeCard(res);
+            })
+            .catch((err) => {
+                console.log(`Ошибка при снятии лайка с карточки ${err}`);
+            });
+    }
+}
 
 
 popupEditProfile.setEventListeners();
