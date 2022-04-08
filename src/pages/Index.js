@@ -63,8 +63,6 @@ const handleClickCard = (data) => {
   popupWithImage.open(data)
 };
 
-const deleteCard = (card) => {
-}
 
 function addCard(data) {
   const card = new Card('.template', data, handleClickCard, userInfo.getUserId, deleteCard, likeCard);
@@ -139,6 +137,16 @@ function likeCard(card) {
                 console.log(`Ошибка при снятии лайка с карточки ${err}`);
             });
     }
+}
+
+function deleteCard(card) {
+    api.removeCard(card._cardId)
+        .then(() => {
+            card.deleteCard();
+        })
+        .catch((err) => {
+            console.log(`Ошибка при удалении карточки ${err}`);
+        })
 }
 
 

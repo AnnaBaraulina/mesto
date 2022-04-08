@@ -33,9 +33,9 @@ export default class Card {
             this._name;
         this._likeCalc = this._element.querySelector(".element__likes");
         this._likeCalc.textContent = this._likes.length;
-        if (this._ownerId !== this._userId) {
-            this._deleteButton.classList.add("element__remove_disabled");
-        }
+        // if (this._ownerId !== this._userId) {
+        //     this._deleteButton.classList.add("element__remove_disabled");
+        // }
         if (this._isLiked) {
             this._like.classList.add("element__icon_active");
         }
@@ -66,7 +66,7 @@ export default class Card {
     _setEventListeners() {
         this._element
             .querySelector(".element__remove")
-            .addEventListener("click", this._deleteCard);
+            .addEventListener("click", () => this._deleteCard(this));
         this._like.addEventListener("click", () => this._likeCard(this));
         this._element
             .querySelector(".element__image")
