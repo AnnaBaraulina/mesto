@@ -42,3 +42,5 @@ export const initialCards = [
  export const popupAdd = document.querySelector('.popup_new');
  export const popupAddOpen = document.querySelector('.profile__add-button');
  export const elementsContainer = document.querySelector('.elements'); // переменная для вставки карточки через template
+ export const editButton = document.querySelector('#submit-edit');
+ export const addButton = document.querySelector('#submit-add');
