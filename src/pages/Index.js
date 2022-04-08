@@ -143,14 +143,14 @@ Promise.all([getProfileInfo, getInitialCards])
   }
   
 
-const popupRemove = new PopupWithConfirmation('popup-delete', deleteCard); // popupDelete
+const popupRemove = new PopupWithConfirmation('popup-delete', submitDelete); // popupDelete
 popupRemove.setEventListeners();  
 
-function removeCard(card) {
+function deleteCard(card) {
   popupRemove.open(card); 
 }
 
-function deleteCard(card) {//submitRemoveForm
+function submitDelete(card) {
   popupCardDelete.textContent = 'Удаление...'
   api.removeCard(card.getIdCard())
    .then(() => {
