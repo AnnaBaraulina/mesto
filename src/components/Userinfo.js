@@ -17,9 +17,9 @@ export default class UserInfo {
   getUserId() {
         return this._userId
     }
-   /*setUserId(userId) {
+   setUserId(userId) {
        this._userId = userId
-   }*/
+   }
 }
 
 

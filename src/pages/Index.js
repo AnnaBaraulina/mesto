@@ -38,6 +38,7 @@ function handleProfileSubmitForm(data) {
   editButton.textContent = 'Сохранение...'
   api.editProfileInfo(data)
     .then((res) => {
+      userInfo.setUserId(res._id)
       userInfo.setUserInfo(res.name, res.about)
     })
     .catch((err) => {
@@ -65,7 +66,7 @@ const handleClickCard = (data) => {
 };
 
 function addCard(data) {
-  const card = new Card('.template',  data, handleClickCard, userInfo.getUserId, deleteCard, likeCard);
+  const card = new Card('.template',  data, handleClickCard, userInfo.getUserId(), deleteCard, likeCard);
   const cardElement = card.generateCard();
   return cardElement
 }
@@ -112,6 +113,7 @@ const getInitialCards = api.getCards()
 Promise.all([getProfileInfo, getInitialCards])
   .then(([profileInfo, initialCards]) => {
     userInfo.setUserInfo(profileInfo.name, profileInfo.about)
+    userInfo.setUserId(profileInfo._id);
     renderCard.render(initialCards);
   })
   .catch((err) => {
