@@ -65,7 +65,7 @@ const handleClickCard = (data) => {
 };
 
 function addCard(data) {
-  const card = new Card('.template', { data }, handleClickCard, userInfo.getUserId, deleteCard, /*likeCard*/);
+  const card = new Card('.template',  data, handleClickCard, userInfo.getUserId, deleteCard, likeCard);
   const cardElement = card.generateCard();
   return cardElement
 }
@@ -119,27 +119,38 @@ Promise.all([getProfileInfo, getInitialCards])
   })
 
   // попап удаления карточки
-  const popupConfirmation = new PopupWithConfirmation('popup-delete', submitRemoveForm);
-  popupConfirmation.setEventListeners();
-  
-  function deleteCard(card) {
-    popupConfirmation.open(card);
+  /*const popupConfirmation = new PopupWithConfirmation('popup-delete', submitRemoveForm);
+  popupConfirmation.setEventListeners();*/
+
+  function likeCard(card) {
+    if(!card.getIsLiked()) {
+      api.putLikeCard(card._cardId)
+      .then((res) => {
+        card.Likecard(res);
+      })
+      .catch((err) => {
+        console.log(`Ошибка при добавлении лайка ${err}`)
+      });
+    } else {
+      api.removeLike(card._cardId)
+      .then((res) => {
+        card.likeCard(res);
+      })
+      .catch((err) => {
+        console.log(`Ошибка при снятии лайка ${err}`)
+      });
+    }
   }
   
-  function submitRemoveForm(card) {
-    popupCardDelete.textContent = 'Удаление...'
-    api.removeCard(card.getIdCard())
+function deleteCard(card) {
+  api.removeCard(card._cardId)
     .then(() => {
       card.deleteCard();
-      PopupWithConfirmation.close();
     })
     .catch((err) => {
-      console.log(`Ошибка при удалении карточки ${err}`)
+      console.log(`Ошибка при удалении карточки ${err}`);
     })
-    .finally(() => {
-      popupCardDelete.textContent = 'Да'
-    })
-  }
+}
 
 
 
