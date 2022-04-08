@@ -30,7 +30,7 @@ export default class Card {
         this._likeCalc = this._element.querySelector('.element__likes');
         this._likeCalc.textContent = this._likes.length;
         if (this._ownerId !== this._userId) {
-            this._deleteButton.classList.add('element__remove_disabled');
+            this._deleteButton.classList.add('element__remove_disabled')
         }
         if (this._isLiked) {
             this._like.classList.add('element__icon_active');
@@ -69,6 +69,9 @@ export default class Card {
             this._handleClickCard(data);
         }
         );
+    }
+    getIdCard() {
+        return this._cardId;
     }
 
 }

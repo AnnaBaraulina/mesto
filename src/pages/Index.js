@@ -1,9 +1,10 @@
-import { initialCards, enableValidation, popupEdit, popupEditOpen, containerName, containerAbout, popupPhoto, popupAdd, popupAddOpen, elementsContainer, editButton, addButton } from '../utils/constants.js';
+import { initialCards, enableValidation, popupEdit, popupEditOpen, containerName, containerAbout, popupPhoto, popupAdd, popupAddOpen, elementsContainer, editButton, addButton, popupCardDelete } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import './index.css';
 import UserInfo from '../components/Userinfo.js';
 import Api from '../components/Api.js';
@@ -64,7 +65,7 @@ const handleClickCard = (data) => {
 };
 
 function addCard(data) {
-  const card = new Card('.template', { data }, handleClickCard, userInfo.getUserId, /*deleteCard, likeCard*/);
+  const card = new Card('.template', { data }, handleClickCard, userInfo.getUserId, deleteCard, /*likeCard*/);
   const cardElement = card.generateCard();
   return cardElement
 }
@@ -116,6 +117,29 @@ Promise.all([getProfileInfo, getInitialCards])
   .catch((err) => {
     console.log(`Ошибка при получении данных ${err}`)
   })
+
+  // попап удаления карточки
+  const popupConfirmation = new PopupWithConfirmation('popup-delete', submitRemoveForm);
+  popupConfirmation.setEventListeners();
+  
+  function deleteCard(card) {
+    popupConfirmation.open(card);
+  }
+  
+  function submitRemoveForm(card) {
+    popupCardDelete.textContent = 'Удаление...'
+    api.removeCard(card.getIdCard())
+    .then(() => {
+      card.deleteCard();
+      PopupWithConfirmation.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка при удалении карточки ${err}`)
+    })
+    .finally(() => {
+      popupCardDelete.textContent = 'Да'
+    })
+  }
 
 
 
