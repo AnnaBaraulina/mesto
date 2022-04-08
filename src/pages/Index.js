@@ -64,7 +64,7 @@ const handleClickCard = (data) => {
 };
 
 function addCard(data) {
-  const card = new Card('.template', { data }, handleClickCard, userInfo.getUserId, deleteCard, likeCard);
+  const card = new Card('.template', { data }, handleClickCard, userInfo.getUserId, /*deleteCard, likeCard*/);
   const cardElement = card.generateCard();
   return cardElement
 }
