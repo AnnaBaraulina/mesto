@@ -128,7 +128,7 @@ Promise.all([getProfileInfo, getInitialCards])
     if(!card.getIsLiked()) {
       api.putLikeCard(card._cardId)
       .then((res) => {
-        card.Likecard(res);
+        card.likeCard(res);
       })
       .catch((err) => {
         console.log(`Ошибка при добавлении лайка ${err}`)
