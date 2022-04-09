@@ -4,6 +4,7 @@ import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import './index.css';
 import UserInfo from '../components/Userinfo.js';

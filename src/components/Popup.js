@@ -1,7 +1,7 @@
 export default class Popup {
     constructor (popupElement) {
         this._popupElement = popupElement;
-        this._popupCloseButton = this._popupElement.querySelector('.popup__close-icon');
+        /*this._popupCloseButton = this._popupElement.querySelector('.popup__close-icon');*/
     }
     open() {
         this._popupElement.classList.add('popup_opened');
@@ -23,8 +23,14 @@ export default class Popup {
         }
     }
     setEventListeners() {
-        this._popupCloseButton.addEventListener('click', this.close.bind(this))
-        document.addEventListener('click', this._handleOverlayClose);
+        /*this._popupCloseButton.addEventListener('click', this.close.bind(this))
+        document.addEventListener('click', this._handleOverlayClose);*/
+        const closeIcon = this._popupElement.querySelector('.popup__close-icon');
+        closeIcon.addEventListener('click', () => this.close())
+
+
+
+ 
 
    
     }
