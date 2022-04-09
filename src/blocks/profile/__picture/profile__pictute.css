@@ -4,6 +4,10 @@
     margin-right: 30px;
 }
 
+.profile__picture:hover {
+    opacity: 0.2;
+}
+
 @media screen and (max-width: 750px) {
     .profile__picture {
         margin: 0;

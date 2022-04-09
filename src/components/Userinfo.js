@@ -1,3 +1,5 @@
+import { avatarButton } from "../utils/constants";
+
 export default class UserInfo {
   constructor({nameProfileSelector,infoProfileSelector}) {
       this._nameProfile = document.querySelector(nameProfileSelector);
@@ -19,6 +21,9 @@ export default class UserInfo {
     }
    setUserId(userId) {
        this._userId = userId
+   }
+   setAvatar(newAvatar) {
+       this._avatar.src = newAvatar;
    }
 }
 

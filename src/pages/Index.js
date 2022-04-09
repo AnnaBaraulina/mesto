@@ -1,4 +1,4 @@
-import { initialCards, enableValidation, popupEdit, popupEditOpen, containerName, containerAbout, popupPhoto, popupAdd, popupAddOpen, elementsContainer, editButton, addButton, popupCardDelete } from '../utils/constants.js';
+import { initialCards, enableValidation, popupEdit, popupEditOpen, containerName, containerAbout, popupPhoto, popupAdd, popupAddOpen, elementsContainer, editButton, addButton, popupCardDelete, avatarButton, editAvatarInProfile } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -121,6 +121,28 @@ Promise.all([getProfileInfo, getInitialCards])
     console.log(`Ошибка при получении данных ${err}`)
   })
 
+  //изменения аватара
+  const changeProfileAvatarPopup = new PopupWithForm(document.querySelector('.popup_avatar', submitAvatarForm))
+
+  function submitAvatarForm(data) {
+    avatarButton.textContent = "Сохранение..."
+    api.editAvatar(data)
+     .then((res) => {
+       userInfo.setAvatar(res.avatar)
+       changeProfileAvatarPopup.close();
+     })
+     .catch((err) => {
+       console.log(`Ошибка при попытке смены аватара ${err}`);
+     })
+     .finally(() => {
+       avatarButton.textContent = 'Сохранить'
+     })
+  }
+
+  changeProfileAvatarPopup.setEventListeners();
+
+
+
 
 
 function likeCard(card) {
@@ -175,6 +197,8 @@ popupWithImage.setEventListeners();
 
 const formEditValidator = new FormValidator(enableValidation, popupEdit);
 const formAddValidator = new FormValidator(enableValidation, popupAdd);
+/*const formAvatarValidator = new FormValidator(enableValidation, changeProfileAvatarPopup)*/
+
 formEditValidator.enableValidation();
 formAddValidator.resetValidation();
 formAddValidator.enableValidation();
@@ -185,4 +209,8 @@ popupAddOpen.addEventListener('click', function () {
   formAddValidator.resetValidation();
 });
 
+editAvatarInProfile.addEventListener('click', () => {
+  /*formAvatarValidator.resetValidation();*/
+  changeProfileAvatarPopup.open()
+})
 

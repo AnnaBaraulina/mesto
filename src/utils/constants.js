@@ -44,4 +44,6 @@ export const initialCards = [
  export const elementsContainer = document.querySelector('.elements'); // переменная для вставки карточки через template
  export const editButton = document.querySelector('#submit-edit');
  export const addButton = document.querySelector('#submit-add');
- export const popupCardDelete = document.querySelector('#confirm-delete')
+ export const popupCardDelete = document.querySelector('#confirm-delete');
+ export const avatarButton =document.querySelector('#submit-avatar');
+ export const editAvatarInProfile = document.querySelector('.profile__edit-avatar');

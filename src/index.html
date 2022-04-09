@@ -15,7 +15,9 @@
     </header>
     <main class="content page__content">
       <section class="profile">
+        <button class="profile__edit-avatar" type="button" aria-label="Изменить аватар">
         <img class="profile__picture" alt="Жак-Ив Кусто" src="<%=require('./images/avatarimage.jpg')%>">
+        </button>
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__name"></h1>
@@ -65,6 +67,18 @@
       </form>
     </div>
   </section>
+  <section class="popup popup_avatar">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <button type="button" class="popup__close-icon" id="close-avatar"></button>
+      <h2 class="popup__heading">Обновить аватар</h2>
+      <form class="popup__form" name="avatar" id="avatar">
+        <input type="url" class="popup__input" id='input-avatar' placeholder="Ссылка на  новый аватар" required>
+        <span class="popup__error" id="input-avatar-error"></span>
+        <button type="submit" class="popup__button" id="submit-avatar">Сохранить</button>
+      </form>
+    </div>
+  </section>
   <section class="popup popup_image">
     <div class="popup__overlay"></div>
     <div class="popup__container">
@@ -82,6 +96,19 @@
         <h2 class="popup__title">Вы уверены?</h2>
         <button type="button" class="popup__button" id="confirm-delete">Да</button>
       </form>
+    </div>
+  </section>
+
+  <section class="popup popup_avatar">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <button type="button" class="popup__close-icon"></button>
+      <h2 class="popup__heading">Обновить аватар</h2>
+      <form class="popup__form" name="avatar" id="avatar">
+        <input type="url" name="avatar-url" placeholder="Ссылка на новый аватар" class="popup__input" id="avatar-link" required value="">
+        <span class="popup__input-error" id="avatar-link-error"></span>
+        <button type="submit" class="popup__button" id="button-Avatarsave">Сохранить</button>
+      </form>  
     </div>
   </section>
 
