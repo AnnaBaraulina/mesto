@@ -114,32 +114,35 @@ const getInitialCards = api.getCards()
 Promise.all([getProfileInfo, getInitialCards])
   .then(([profileInfo, initialCards]) => {
     userInfo.setUserInfo(profileInfo.name, profileInfo.about)
+    userInfo.setAvatar(profileInfo.avatar)
     userInfo.setUserId(profileInfo._id);
     renderCard.render(initialCards);
+
+    setTimeout(() => {
+      cloakCleaning()
+    }, 0)
   })
   .catch((err) => {
     console.log(`Ошибка при получении данных ${err}`)
   })
 
-  //изменения аватара
-  const changeProfileAvatarPopup = new PopupWithForm(document.querySelector('.popup_avatar', submitAvatarForm))
+//изменения аватара
+const changeProfileAvatarPopup = new PopupWithForm(document.querySelector('.popup_avatar'), submitAvatarForm)
 
-  function submitAvatarForm(data) {
-    avatarButton.textContent = "Сохранение..."
-    api.editAvatar(data)
-     .then((res) => {
-       userInfo.setAvatar(res.avatar)
-       changeProfileAvatarPopup.close();
-     })
-     .catch((err) => {
-       console.log(`Ошибка при попытке смены аватара ${err}`);
-     })
-     .finally(() => {
-       avatarButton.textContent = 'Сохранить'
-     })
-  }
-
-  changeProfileAvatarPopup.setEventListeners();
+function submitAvatarForm(data) {
+  avatarButton.textContent = "Сохранение..."
+  api.editAvatar(data)
+    .then((res) => {
+      userInfo.setAvatar(res.avatar)
+      changeProfileAvatarPopup.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка при попытке смены аватара ${err}`);
+    })
+    .finally(() => {
+      avatarButton.textContent = 'Сохранить'
+    })
+}
 
 
 
@@ -167,7 +170,6 @@ function likeCard(card) {
 
 
 const popupRemove = new PopupWithConfirmation(document.querySelector('#delete'), submitDeletion); // popupDelete
-popupRemove.setEventListeners();
 
 function deleteCard(card) {
   popupRemove.open(card);
@@ -189,11 +191,17 @@ function submitDeletion(card) {
     })
 };
 
-
+function cloakCleaning() {
+  Array.from(document.querySelectorAll('[x-cloak]')).map((el) => {
+    el.removeAttribute('x-cloak')
+  })
+}
 
 
 popupEditProfile.setEventListeners();
 popupWithImage.setEventListeners();
+changeProfileAvatarPopup.setEventListeners();
+popupRemove.setEventListeners();
 
 const formEditValidator = new FormValidator(enableValidation, popupEdit);
 const formAddValidator = new FormValidator(enableValidation, popupAdd);

@@ -22,8 +22,8 @@ export default class UserInfo {
    setUserId(userId) {
        this._userId = userId
    }
-   setAvatar(newAvatar) {
-       this._avatar.src = newAvatar;
+   setAvatar(source) {
+       document.querySelector('[data-avatar-src]').src = source
    }
 }
 

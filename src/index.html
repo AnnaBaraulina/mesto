@@ -6,6 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto Project</title>
+
+  <style>
+    [x-cloak] {
+      opacity: 0 !important;
+      transition: none !important;
+    }
+  </style>
 </head>
 
 <body class="page">
@@ -13,11 +20,13 @@
     <header class="header page__header">
       <img class="header__logo" src="<%=require('./images/vectorlogo.svg')%>" alt="Логотип Место">
     </header>
+
     <main class="content page__content">
       <section class="profile">
-        <button class="profile__edit-avatar" type="button" aria-label="Изменить аватар">
-        <img class="profile__picture" alt="Жак-Ив Кусто" src="<%=require('./images/avatarimage.jpg')%>">
+        <button x-cloak class="profile__edit-avatar" type="button" aria-label="Изменить аватар">
+          <img class="profile__picture is-hidden" data-avatar-src alt="Жак-Ив Кусто" src="">
         </button>
+
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__name"></h1>
@@ -25,17 +34,19 @@
           </div>
           <p class="profile__about"></p>
         </div>
+
         <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements content__elements">
       </section>
     </main>
+
     <footer class="footer">
       <p class="footer__info">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
 
-  <section class="popup popup_edit">
+  <section x-cloak class="popup popup_edit">
     <div class="popup__overlay"></div>
     <div class="popup__container popup__container_form">
       <button type="button" class="popup__close-icon" id="close-edit"></button>
@@ -52,7 +63,7 @@
     </div>
   </section>
 
-  <section class="popup popup_new">
+  <section x-cloak class="popup popup_new">
     <div class="popup__overlay"></div>
     <div class="popup__container popup__container_form">
       <button type="button" class="popup__close-icon" id="close-add"></button>
@@ -67,18 +78,20 @@
       </form>
     </div>
   </section>
-  <section class="popup popup_avatar">
+
+  <section x-cloak class="popup popup_avatar">
     <div class="popup__overlay"></div>
-    <div class="popup__container">
+    <div class="popup__container popup__container_form">
       <button type="button" class="popup__close-icon" id="close-avatar"></button>
       <h2 class="popup__heading">Обновить аватар</h2>
       <form class="popup__form" name="avatar" id="avatar">
-        <input type="url" class="popup__input" id='input-avatar' placeholder="Ссылка на  новый аватар" required>
+        <input type="url" class="popup__input" id='input-avatar' placeholder="Ссылка на  новый аватар" required data-id="avatar">
         <span class="popup__error" id="input-avatar-error"></span>
         <button type="submit" class="popup__button" id="submit-avatar">Сохранить</button>
       </form>
     </div>
   </section>
+
   <section class="popup popup_image">
     <div class="popup__overlay"></div>
     <div class="popup__container">
@@ -88,29 +101,28 @@
     </div>
   </section>
 
-  <section class="popup popup-delete" id="delete">
+  <section x-cloak class="popup popup-delete" id="delete">
     <div class="popup__overlay"></div>
-    <div class="popup__container">
+    <div class="popup__container popup__container_form">
       <button type="button" class="popup__close-icon"></button>
       <form name="DeleteCard" class="popup__form popup__delete">
-        <h2 class="popup__title">Вы уверены?</h2>
+        <h2 class="popup__heading">Вы уверены?</h2>
         <button type="button" class="popup__button" id="confirm-delete">Да</button>
       </form>
     </div>
   </section>
 
-  <section class="popup popup_avatar">
+  <!-- <section class="popup popup_avatar">
     <div class="popup__overlay"></div>
-    <div class="popup__container">
+    <div class="popup__container popup__container_form">
       <button type="button" class="popup__close-icon"></button>
       <h2 class="popup__heading">Обновить аватар</h2>
       <form class="popup__form" name="avatar" id="avatar">
-        <input type="url" name="avatar-url" placeholder="Ссылка на новый аватар" class="popup__input" id="avatar-link" required value="">
         <span class="popup__input-error" id="avatar-link-error"></span>
         <button type="submit" class="popup__button" id="button-Avatarsave">Сохранить</button>
       </form>  
     </div>
-  </section>
+  </section> -->
 
   <template class='template'>
     <li class="element">
