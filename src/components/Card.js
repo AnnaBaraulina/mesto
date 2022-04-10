@@ -24,8 +24,9 @@ export default class Card {
         this._element = this._getTemplate();
         this._like = this._element.querySelector('.element__icon');
         this._deleteButton = this._element.querySelector('.element__remove');
-        this._element.querySelector('.element__image').src = this._link;
-        this._element.querySelector('.element__image').alt = this._name;
+        this._cardImage = this._element.querySelector('.element__image');
+        this._cardImage.src = this._link;
+        this._cardImage = this._name;
         this._element.querySelector('.element__heading').textContent = this._name;
         this._likeCalc = this._element.querySelector('.element__likes');
         this._likeCalc.textContent = this._likes.length;

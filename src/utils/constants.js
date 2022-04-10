@@ -47,3 +47,4 @@ export const initialCards = [
  export const popupCardDelete = document.querySelector('#confirm-delete');
  export const avatarButton =document.querySelector('#submit-avatar');
  export const editAvatarInProfile = document.querySelector('.profile__edit-avatar');
+ export const editAvatarInProfileForm = document.querySelector('#avatar');

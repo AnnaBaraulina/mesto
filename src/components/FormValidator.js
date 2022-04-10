@@ -87,6 +87,7 @@ enableValidation({
       this._inputs = Array.from(this._inputList);
     }
     _setInputListeners() {
+      console.log(this._form, this._inputList);
         this._inputList.forEach((input) => {
         input.addEventListener('input', ()  => {
           this._checkIfInputValid(input);

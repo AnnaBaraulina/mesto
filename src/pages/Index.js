@@ -1,4 +1,4 @@
-import { initialCards, enableValidation, popupEdit, popupEditOpen, containerName, containerAbout, popupPhoto, popupAdd, popupAddOpen, elementsContainer, editButton, addButton, popupCardDelete, avatarButton, editAvatarInProfile } from '../utils/constants.js';
+import { initialCards, enableValidation, popupEdit, popupEditOpen, containerName, containerAbout, popupPhoto, popupAdd, popupAddOpen, elementsContainer, editButton, addButton, popupCardDelete, avatarButton, editAvatarInProfile, editAvatarInProfileForm } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -181,14 +181,16 @@ function submitDeletion(card) {
   api.removeCard(card.getIdCard())
     .then(() => {
       card.deleteCard();
+
+      popupRemove.close();
     })
     .catch((err) => {
       console.log(`Ошибка при удалении карточки ${err}`);
     })
-    .finally(() => {
+    /*.finally(() => {
       popupRemove.close();
       //  popupCardDelete.textContent = 'Да'
-    })
+    })*/
 };
 
 function cloakCleaning() {
@@ -205,20 +207,21 @@ popupRemove.setEventListeners();
 
 const formEditValidator = new FormValidator(enableValidation, popupEdit);
 const formAddValidator = new FormValidator(enableValidation, popupAdd);
-/*const formAvatarValidator = new FormValidator(enableValidation, changeProfileAvatarPopup)*/
+const formAvatarValidator = new FormValidator(enableValidation, editAvatarInProfileForm)
 
 formEditValidator.enableValidation();
-formAddValidator.resetValidation();
+formAvatarValidator.enableValidation();
 formAddValidator.enableValidation();
 
-console.log(popupAddOpen);
+formAddValidator.resetValidation();
+
 popupAddOpen.addEventListener('click', function () {
   popupAddCard.open();
   formAddValidator.resetValidation();
 });
 
 editAvatarInProfile.addEventListener('click', () => {
-  /*formAvatarValidator.resetValidation();*/
+  // formAvatarValidator.resetValidation()
   changeProfileAvatarPopup.open()
 })
 
