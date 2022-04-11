@@ -221,7 +221,7 @@ popupAddOpen.addEventListener('click', function () {
 });
 
 editAvatarInProfile.addEventListener('click', () => {
-  // formAvatarValidator.resetValidation()
+  formAvatarValidator.resetValidation()
   changeProfileAvatarPopup.open()
 })
 
