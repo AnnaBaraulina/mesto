@@ -10,7 +10,7 @@
 - OOП
 - API
 - WEBPACK
-- BABBEL
+- BABEL
 
 **ССылка на проект**
 https://annabaraulina.github.io/mesto/
