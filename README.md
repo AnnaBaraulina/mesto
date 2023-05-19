@@ -1,18 +1,15 @@
-**Девятая проектная работа Место**
+We continue working on the "Mesto" project.</br>
 
-Продолжаем работать над проектной работой Место. 
+The website is now connected to the server, and semantic props have been added. The code has been refactored using Object-Oriented Programming (OOP). The project has been built using webpack. The project is written in three languages: HTML, CSS, and JavaScript. Form validation has been implemented using JS. The website is styled with adaptability and responsiveness to different screen formats. Block and element naming follow the BEM methodology, and the files are structured using the BEM Nested methodology.</br>
+</br>
 
-Сайт подключен к серверу, также добавилась семантика пропсов. Сделан рафакторинг кода по ООП. Проект собран на webpack. Проектая работа написана на трех языка: HTML, CSS и JavaScript. Сделана валидация форм с помощью JS. Сайт свёрстан с применением адаптациии и отзывчивости к разным форматам экранов. Язык наименования блоков и элементов - БЭМ, файлы структурированы по методологии БЭМ Nested.
+Technologies used in the project:</br>
 
-**В проекте использованы:**
-- HTML
-- CSS
-- JS(ES6)
-- БЭМ 
-- OOП
-- API
-- WEBPACK
-- BABEL
-
-**ССылка на проект**
-https://annabaraulina.github.io/mesto/
+__HTML</br>
+CSS</br>
+JavaScript (ES6)</br>
+BEM</br>
+OOP</br>
+API</br>
+webpack</br>
+Babel__</br>
